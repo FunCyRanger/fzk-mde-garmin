@@ -37,4 +37,6 @@ jobs:
         run: |
           cd Freizeitkarte-Entwicklung
           perl ./mt.pl bootstrap
+          perl ./mt.pl create Freizeitkarte_EUROPE
+          perl ./mt.pl create Freizeitkarte_DEU+
           
