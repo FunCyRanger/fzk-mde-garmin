@@ -36,6 +36,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           cd Freizeitkarte-Entwicklung
-          per ./mt.pl bootstrap
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          perl ./mt.pl bootstrap
+          
