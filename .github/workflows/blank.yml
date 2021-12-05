@@ -39,4 +39,12 @@ jobs:
           perl ./mt.pl bootstrap
           perl ./mt.pl create Freizeitkarte_EUROPE
           perl ./mt.pl create Freizeitkarte_DEU+
+          perl ./mt.pl fetch_osm Freizeitkarte_EUROPE
+          perl ./mt.pl extract_osm Freizeitkarte_DEU+
+          perl ./mt.pl fetch_ele Freizeitkarte_DEU+
+          perl ./mt.pl join Freizeitkarte_DEU+
+          perl ./mt.pl split Freizeitkarte_DEU+
+          perl ./mt.pl build Freizeitkarte_DEU+
+          perl ./mt.pl gmap Freizeitkarte_DEU+
+          
           
