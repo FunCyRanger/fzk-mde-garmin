@@ -15,8 +15,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+
+  build-existing:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -36,12 +36,41 @@ jobs:
       - name: Run mt script
         run: |
           cd Freizeitkarte-Entwicklung
-          perl ./mt.pl bootstrap
+          perl ./mt.pl --downloadbar bootstrap
+          perl ./mt.pl create Freizeitkarte_HAMBURG
+          perl ./mt.pl --downloadbar fetch_osm Freizeitkarte_HAMBURG
+          perl ./mt.pl --downloadbar fetch_ele Freizeitkarte_HAMBURG
+          perl ./mt.pl join Freizeitkarte_HAMBURG
+          perl ./mt.pl split Freizeitkarte_HAMBURG
+          perl ./mt.pl build Freizeitkarte_HAMBURG
+          perl ./mt.pl gmap Freizeitkarte_HAMBURG
+
+  build-self-extracted:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Install dependencies
+        run: |
+          sudo apt-get install perl
+          sudo apt-get install zip
+          sudo apt-get install default-jre
+
+      # Runs a set of commands using the runners shell
+      - name: Run mt script
+        run: |
+          cd Freizeitkarte-Entwicklung
+          perl ./mt.pl --downloadbar bootstrap
           perl ./mt.pl create Freizeitkarte_EUROPE
           perl ./mt.pl create Freizeitkarte_DEU+
-          perl ./mt.pl fetch_osm Freizeitkarte_EUROPE
+          perl ./mt.pl --downloadbar fetch_osm Freizeitkarte_EUROPE
           perl ./mt.pl extract_osm Freizeitkarte_DEU+
-          perl ./mt.pl fetch_ele Freizeitkarte_DEU+
+          perl ./mt.pl --downloadbar fetch_ele Freizeitkarte_DEU+
           perl ./mt.pl join Freizeitkarte_DEU+
           perl ./mt.pl split Freizeitkarte_DEU+
           perl ./mt.pl build Freizeitkarte_DEU+
