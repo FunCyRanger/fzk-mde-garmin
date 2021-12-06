@@ -67,13 +67,13 @@ jobs:
           cd Freizeitkarte-Entwicklung
           perl ./mt.pl --downloadbar bootstrap
           perl ./mt.pl create Freizeitkarte_DEU
-          perl ./mt.pl create Freizeitkarte_HAMBURG
+          perl ./mt.pl create Freizeitkarte_BAYERN
           perl ./mt.pl --downloadbar fetch_osm Freizeitkarte_DEU
-          perl ./mt.pl extract_osm Freizeitkarte_HAMBURG
-          perl ./mt.pl --downloadbar fetch_ele Freizeitkarte_HAMBURG
-          perl ./mt.pl join Freizeitkarte_HAMBURG
-          perl ./mt.pl split Freizeitkarte_HAMBURG
-          perl ./mt.pl build Freizeitkarte_HAMBURG
-          perl ./mt.pl gmap Freizeitkarte_HAMBURG
+          perl ./mt.pl extract_osm Freizeitkarte_BAYERN
+          perl ./mt.pl --downloadbar fetch_ele Freizeitkarte_BAYERN
+          perl ./mt.pl join Freizeitkarte_BAYERN
+          perl ./mt.pl split Freizeitkarte_BAYERN
+          perl ./mt.pl build Freizeitkarte_BAYERN
+          perl ./mt.pl gmap Freizeitkarte_BAYERN
           
           
